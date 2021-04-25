@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Itscoop</title>
+		<link rel="stylesheet" type="text/css" href="/log.css">
+		<link rel="icon" type="image/png" href="/icon.png">
+		<script type="text/javascript" src="/eel.js"></script>
+	</head>
+
+	
+
+<body>
+
+	<div>
+		<p><br></p>
+		<p><text>Введите данные аккаунта </text></p>
+		<p><input id = "login" name="login" placeholder="login"></input></p>
+		<p><input type = "password" id= "password" name="password", placeholder="password" ></input></p>
+		<button id = "button"  onclick="log()" type="button" >Войти</button>
+
+	</div>
+
+
+	<script>
+	  	async function log() {
+		   let login = document.getElementById('login').value;
+		   let password=document.getElementById('password').value;
+		   window.close();
+		   await eel.write_login(login, password)();
+  		}
+  		
+	</script>
+
+</body>
+
+
+</html>

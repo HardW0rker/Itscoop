@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Itscoop</title>
+		<link rel="stylesheet" type="text/css" href="/main.css">
+		<script type="text/javascript" src="/eel.js"></script>
+		<link rel="icon" type="image/png" href="/icon.png">
+	</head>
+
+	
+
+<body>
+		<!-- Tab links -->
+	<div class ="sig_in">
+		<button class="sig_link" onclick="out_js()" >Выход</button>
+	</div>
+	<div class="tab">
+	  <button class="tablinks" onclick="opentab(event, 'Продвижение','tabcontent')" id="defaultOpen">Продвижение</button>
+	  <button class="tablinks" onclick="opentab(event, 'Отписка', 'tabcontent' )">Отписка</button>
+	  <button class="tablinks" onclick="opentab(event, 'Рассылка сообщений', 'tabcontent')">Рассылка сообщений</button>
+	  <button class="tablinks" onclick="opentab(event, 'Статистика', 'tabcontent')">Статистика</button>
+	</div>
+
+	<!-- Tab content -->
+	<div id="Продвижение" class="tabcontent">
+	  <button class="tablinksProd" onclick="opentab(event, 'По аккаунту','Prodcontent')" id="defaultOpenProd">По аккаунту</button>
+	  <button class="tablinksProd" onclick="opentab(event, 'По #','Prodcontent')">По #</button>
+	  <button class="tablinksProd" onclick="opentab(event, 'Фильтр','Prodcontent')">Фильтр</button>
+	</div>
+
+	<div id="Отписка" class="tabcontent">
+	  <h2>Отписка</h2>
+	  <div class="radio">
+	  	<input type="radio" id = "unsab1" name="optionOt" value="a1" /> Отписаться от всех<Br>
+	  	<Br>
+	  	<input type="radio" id = "unsab2" checked name="optionOt" value="a2" /> Отписаться от тех, кто не подписан в ответ<Br>
+	  	<Br>
+	  	<input type="radio" id = "unsab3" name="optionOt" value="a3" /> Отписаться от тех, на кого подписались, за время работы бота<Br>
+	  </div>
+	  <button class="button" onclick="unsubscribe()" id="otp">Запустить</button>
+	</div>
+
+	<div id="Рассылка сообщений" class="tabcontent">
+	  <h2>Рассылка сообщений</h2>
+	  <p class = "text"> Введите название профиля, подписчикам которого будут рассылаться сообщения</p>
+	  <p><input size="40" id = "person_massage" placeholder="Название профиля"  class = "input"></p>
+	  <p class = "text">Текст сообщения</p>
+	  <p><textarea id = "massage" placeholder="Сообщение"></textarea></p>
+	  <button class="button" onclick="eel_send_direct_message_js()" id="mas">Запустить</button>
+	</div>
+
+	<div id="Статистика" class="tabcontent">
+	  <h2>Статистика</h2>
+	  <p class = "text">Лайков поставленно <input class = "statistic" id= "value1" value="0" disabled></input></p> 
+	  <p class = "text">Подписались на людей <input class = "statistic" id= "value2" value="0" disabled></input></p> 
+	  <p class = "text">Отписались от людей  <input class = "statistic" id= "value3" value="0" disabled></input></p> 
+	</div>
+
+	<div id="По аккаунту" class="Prodcontent">
+	  <h2> Аккаунт медийного лица</h2>
+	  <p class = "text">Укажите название профиля человека, целевая аудитория которого соответвует вашей тематике</p>
+	  <p><input size="40" id = "person" placeholder="Введите название аккаунта" class = "input"></p>
+	  	<div class="radio" >
+		  <input type="radio" id = "option1" checked name="optionPr1" value="pr1"/> Ставить только лайки<Br>
+		  <Br>
+		  <input type="radio" id = "option2" name="optionPr1" value="pr2"/> Ставить лайки и подписываться<Br>
+		</div>
+		<button class="button" onclick="bot_by_person_js()" id="per">Запустить</button>
+	</div>
+
+	<div id="По #" class="Prodcontent">
+	  <h2>Публикации содержащие хэштег</h2>
+	  <p class = "text">Укажите хэштег, содержание которого вам интересно</p>
+	  <p><input size="40" id = "hashtag" placeholder="Введите хэштег: #hashtag" class = "input"></p>
+		  <div class="radio">
+			  <input type="radio" id = "option3" checked name="optionPr2" value="pr3"   /> Ставить только лайки<Br>
+			  <Br>
+			  <input type="radio" id = "option4" name="optionPr2" value="pr4"  /> Ставить лайки и подписываться<Br>
+		  </div>
+		<button class="button" onclick="bot_by_hashtag_js()" id="hash">Запустить</button>
+	</div>
+
+	<div id="Фильтр" class="Prodcontent">
+	  <h2> Настройки фильтра </h2>
+	  <div id ="action_day">Колличество действий в день 
+	  	<input id ="max_action"  type= "number" min ="0" max="1500" step = "100" value="720"></input>
+		</div>
+	  
+	  <div id= "Публикации" class = "filter">
+	  	  <div id= "text"> Публикации</div>
+		  <div id ="forma">  
+		  	<input class ="min" value="от" disabled></input><br>
+		  	<input class ="max" id = "minpublication" value="2"></input>
+		  </div>
+		  <div id ="forma">
+		  	<input class ="min"  value="до" disabled></input><br>
+		  	<input class="max"  id = "maxpublication" value="100"></input>
+		  </div>
+	  </div>
+	   <div id= "Подписки" class = "filter">
+	   	 <div id= "text"> Подписки</div>
+		  <div id ="forma">  
+		  	<input class ="min"  value="от" disabled></input><br>
+		  	<input class="max"  id = "minsubscriptions" value="70"></input>
+		  </div>
+		  <div id ="forma">
+		  	<input class ="min"  value="до" disabled></input><br>
+		  	<input class ="max"  id = "maxsubscriptions" value="1500"></input>
+		  </div>
+	  </div>
+	  <div id= "Подписчики" class = "filter">
+	   	 <div id= "text"> Подписчики</div>
+		  <div id ="forma">  
+		  	<input class ="min"  value="от" disabled></input><br>
+		  	<input class="max"  id = "minsubscribers" value="70"></input>
+		  </div>
+		  <div id ="forma">
+		  	<input class ="min"  value="до" disabled></input><br>
+		  	<input class="max"  id = "maxsubscribers" value="1500"></input>
+		  </div>
+	  </div>
+	</div>
+
+
+	<script type="text/javascript">
+
+
+		
+		var value1 = '0', value2 = '0', value3 = '0';
+
+		async function get_value(){
+			value1 = await eel.write_statistic(1)();
+			value2 = await eel.write_statistic(2)();
+			value3 = await eel.write_statistic(3)();
+			document.getElementById("value1").value = value1;
+			document.getElementById("value2").value = value2;
+			document.getElementById("value3").value = value3;
+		}
+
+		get_value();
+
+		document.getElementById("defaultOpen").click();
+
+		async function bot_by_person_js(){
+			let subscribe_on;
+
+			if (document.getElementById('option2').checked)
+				subscribe_on = '1';
+			else
+				subscribe_on = '0';
+			let person = document.getElementById("person").value;
+			let max_action = document.getElementById("max_action").value;
+			let minpublication = document.getElementById("minpublication").value;
+			let maxpublication = document.getElementById("maxpublication").value;
+			let minsubscriptions = document.getElementById("minsubscriptions").value;
+			let maxsubscriptions = document.getElementById("maxsubscriptions").value;
+			let minsubscribers = document.getElementById("minsubscribers").value;
+			let maxsubscribers = document.getElementById("maxsubscribers").value;
+			await eel.bot_by_person(subscribe_on, person, max_action, minpublication, maxpublication, minsubscriptions, maxsubscriptions, minsubscribers, maxsubscribers)();
+
+		}
+
+		async function bot_by_hashtag_js(){
+			let subscribe_on;
+
+			if (document.getElementById('option4').checked)
+				subscribe_on = '1';
+			else
+				subscribe_on = '0';
+			let hashtag = document.getElementById("hashtag").value;
+			let max_action = document.getElementById("max_action").value;
+			let minpublication = document.getElementById("minpublication").value;
+			let maxpublication = document.getElementById("maxpublication").value;
+			let minsubscriptions = document.getElementById("minsubscriptions").value;
+			let maxsubscriptions = document.getElementById("maxsubscriptions").value;
+			let minsubscribers = document.getElementById("minsubscribers").value;
+			let maxsubscribers = document.getElementById("maxsubscribers").value;
+			await eel.bot_by_hashtag(subscribe_on, hashtag, max_action, minpublication, maxpublication, minsubscriptions, maxsubscriptions, minsubscribers, maxsubscribers)();
+
+		}
+
+		async function eel_send_direct_message_js(){
+			
+			let person = document.getElementById("person_massage").value;
+			let massage = document.getElementById("massage").value;
+			await eel.eel_send_direct_message(person, 30, massage, '')();
+
+		}
+
+		async function unsubscribe(){
+			
+			if (document.getElementById('unsab1').checked)
+				alert('1')
+			if (document.getElementById('unsab2').checked)
+				await eel.eel_smart_unsubscribe()();
+			if (document.getElementById('unsab3').checked)
+				await eel.ell_unsubscribe_all()();
+
+			
+
+		}
+		
+		async function out_js(){
+		   window.close();
+		   await eel.out()();
+		}
+
+
+		function opentab(evt, tabname, tabclass) {
+
+		    var i, tabcontent, tablinks;
+
+		    // Get all elements with class="tabcontent" and hide them
+		    tabcontent = document.getElementsByClassName(tabclass);
+		    for (i = 0; i < tabcontent.length; i++) {
+		        tabcontent[i].style.display = "none";
+		    }
+
+		    tabcontent = document.getElementsByClassName("Prodcontent");
+		    for (i = 0; i < tabcontent.length; i++) {
+		        tabcontent[i].style.display = "none";
+		    }
+
+		    if (tabclass == "tabcontent" ){
+		    // Get all elements with class="tablinks" and remove the class "active"
+			    tablinks = document.getElementsByClassName("tablinks");
+			    for (i = 0; i < tablinks.length; i++) {
+			        tablinks[i].className = tablinks[i].className.replace(" active", "");
+			    }
+			}
+
+			if (tabclass == "Prodcontent" ){
+		    // Get all elements with class="tablinks" and remove the class "active"
+			    tablinks = document.getElementsByClassName("tablinksProd");
+			    for (i = 0; i < tablinks.length; i++) {
+			        tablinks[i].className = tablinks[i].className.replace(" active", "");
+			    }
+			}
+
+
+
+		    // Show the current tab, and add an "active" class to the button that opened the tab
+		    document.getElementById(tabname).style.display = "block";
+		    evt.currentTarget.className += " active";
+
+		    if (tabname == 'Продвижение'){
+		    	document.getElementById("defaultOpenProd").click();
+			}
+
+		}
+	</script>
+
+
+</body>
+
+
+
+
+</html>
